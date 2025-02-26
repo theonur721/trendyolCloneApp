@@ -1,5 +1,6 @@
 package com.trendyolcloneapp
 
+import android.os.Bundle
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate
 import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint.fabricEnabled
@@ -12,6 +13,13 @@ class MainActivity : ReactActivity() {
    * rendering of the component.
    */
   override fun getMainComponentName(): String = "trendyolCloneApp"
+
+  /**
+   * Ensures proper functioning of react-native-screens on Android.
+   */
+  override fun onCreate(savedInstanceState: Bundle?) {
+      super.onCreate(null) // Bu satır eklendi!
+  }
 
   /**
    * Returns the instance of the [ReactActivityDelegate]. We use [DefaultReactActivityDelegate]
