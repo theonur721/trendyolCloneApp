@@ -1,18 +1,24 @@
 import React, {useEffect} from 'react';
-import {View, Text} from 'react-native';
-import {getRequest} from '../service/verbs';
-import {PRODUCT_URLS} from '../service/urls';
+import {SafeAreaView, FlatList, Text} from 'react-native';
+import {useDispatch, useSelector} from 'react-redux';
+import {getAllCategories} from '../store/actions/categoriesActions';
 
 const HomeScreen: React.FC<Props> = ({navigation, route}) => {
+  const categories = useSelector(
+    (state: RootState) => state.categories.categories,
+  );
+  const dispatch = useDispatch();
   useEffect(() => {
-    getRequest({}, PRODUCT_URLS.ALL_PRODUCTS)
-      .then(data => console.log(data.data))
-      .catch(error => console.log(error));
+    dispatch(getAllCategories());
   }, []);
+  console.log(categories);
   return (
-    <View>
-      <Text>HomeScreen</Text>
-    </View>
+    <SafeAreaView>
+      <FlatList
+        data={categories}
+        renderItem={({item}) => <Text>{item}</Text>}
+      />
+    </SafeAreaView>
   );
 };
 
