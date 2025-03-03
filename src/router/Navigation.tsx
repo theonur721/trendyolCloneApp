@@ -24,8 +24,12 @@ const BottomTab: React.FC<Props> = ({navigation, route}) => {
         name={ROUTES.HOME}
         component={HomeScreen}
         options={{
-          tabBarIcon: ({color, size}) => (
-            <Icon name="home-outline" color={color} size={size} /> // Home ikonu
+          tabBarIcon: ({color, size, focused}) => (
+            <Icon
+              name={focused ? 'home' : 'home-outline'}
+              color={color}
+              size={size}
+            /> // Focus durumuna göre ikon değişiyor
           ),
           headerRight: () => <HeaderRight />, // HeaderRight bileşenini ekledik
         }}
@@ -34,8 +38,12 @@ const BottomTab: React.FC<Props> = ({navigation, route}) => {
         name={ROUTES.SEARCH}
         component={SearchScreen}
         options={{
-          tabBarIcon: ({color, size}) => (
-            <Icon name="search-outline" color={color} size={size} /> // Search ikonu
+          tabBarIcon: ({color, size, focused}) => (
+            <Icon
+              name={focused ? 'search' : 'search-outline'}
+              color={color}
+              size={size}
+            /> // Focus durumuna göre ikon değişiyor
           ),
           headerRight: () => <HeaderRight />, // HeaderRight bileşenini ekledik
         }}
@@ -44,8 +52,12 @@ const BottomTab: React.FC<Props> = ({navigation, route}) => {
         name={ROUTES.FAVORITES}
         component={FavoritesScreen}
         options={{
-          tabBarIcon: ({color, size}) => (
-            <Icon name="heart-outline" color={color} size={size} /> // Favorites ikonu
+          tabBarIcon: ({color, size, focused}) => (
+            <Icon
+              name={focused ? 'heart' : 'heart-outline'}
+              color={color}
+              size={size}
+            /> // Focus durumuna göre ikon değişiyor
           ),
           headerRight: () => <HeaderRight />, // HeaderRight bileşenini ekledik
         }}
@@ -54,8 +66,12 @@ const BottomTab: React.FC<Props> = ({navigation, route}) => {
         name={ROUTES.CART}
         component={CartScreen}
         options={{
-          tabBarIcon: ({color, size}) => (
-            <Icon name="cart-outline" color={color} size={size} /> // Cart ikonu
+          tabBarIcon: ({color, size, focused}) => (
+            <Icon
+              name={focused ? 'cart' : 'cart-outline'}
+              color={color}
+              size={size}
+            /> // Focus durumuna göre ikon değişiyor
           ),
           headerRight: () => <HeaderRight />, // HeaderRight bileşenini ekledik
         }}
@@ -64,8 +80,12 @@ const BottomTab: React.FC<Props> = ({navigation, route}) => {
         name={ROUTES.PROFILE}
         component={ProfileScreen}
         options={{
-          tabBarIcon: ({color, size}) => (
-            <Icon name="person-outline" color={color} size={size} /> // Profile ikonu
+          tabBarIcon: ({color, size, focused}) => (
+            <Icon
+              name={focused ? 'person' : 'person-outline'}
+              color={color}
+              size={size}
+            /> // Focus durumuna göre ikon değişiyor
           ),
           headerRight: () => <HeaderRight />, // HeaderRight bileşenini ekledik
         }}

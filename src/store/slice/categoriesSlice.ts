@@ -22,7 +22,7 @@ export const categoriesSlice = createSlice({
         state.categories = action.payload;
       })
       .addCase(getAllCategories.rejected, (state, action) => {
-        state.pending = true;
+        state.pending = false;
         state.error = action.error;
       });
   },
