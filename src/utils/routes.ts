@@ -6,3 +6,8 @@ export const ROUTES = {
   PROFILE: 'Profile',
   TAB: 'Tab',
 };
+
+export const PRODUCTSNAVIGATOR = {
+  PRODUCTLIST: 'ProductsList',
+  PRODUCTDETAIL: 'ProductDetail',
+};

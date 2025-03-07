@@ -1,5 +1,5 @@
 import React from 'react';
-import {SafeAreaView, StyleSheet, View} from 'react-native';
+import {SafeAreaView, ScrollView, View} from 'react-native';
 import Categories from '../widgets/categories';
 import {defaultScreenStyle} from '../styles/defaultScreenStyle';
 import Introduction from '../widgets/introduction';
@@ -10,10 +10,12 @@ const HomeScreen: React.FC<Props> = ({navigation, route}) => {
   return (
     <SafeAreaView style={defaultScreenStyle.safeAreaContainer}>
       <View style={defaultScreenStyle.container}>
-        <Categories />
-        <Introduction />
-        <BestSeller />
-        <PopularProducts />
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <Categories />
+          <Introduction />
+          <BestSeller />
+          <PopularProducts />
+        </ScrollView>
       </View>
     </SafeAreaView>
   );

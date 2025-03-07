@@ -6,7 +6,7 @@ import {COLORS} from '../../theme/colors';
 const CategoryItem: React.FC<categoryItemProps> = ({category}) => {
   return (
     <Pressable style={styles.container}>
-      <Text style={{fontSize: 16}}>{category}</Text>
+      <Text style={{fontSize: 16, fontWeight: 'bold'}}>{category}</Text>
     </Pressable>
   );
 };

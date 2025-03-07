@@ -6,10 +6,12 @@ import SearchScreen from '../screens/SearchScreen';
 import FavoritesScreen from '../screens/FavoritesScreen';
 import CartScreen from '../screens/Cart';
 import ProfileScreen from '../screens/ProfileScreen';
-import {ROUTES} from '../utils/routes';
+import {PRODUCTSNAVIGATOR, ROUTES} from '../utils/routes';
 import {COLORS} from '../theme/colors';
 import Icon from 'react-native-vector-icons/Ionicons'; // İkonları import ediyoruz
 import HeaderRight from './HeaderRight'; // HeaderRight bileşenini import ettik
+import ProductsList from '../screens/Products';
+import ProductDetail from '../screens/ProductDetail';
 
 const Tab = createBottomTabNavigator();
 
@@ -98,8 +100,21 @@ const Stack = createNativeStackNavigator();
 
 const Navigation: React.FC<Props> = ({navigation, route}) => {
   return (
-    <Stack.Navigator screenOptions={{headerShown: false}}>
-      <Stack.Screen name={ROUTES.TAB} component={BottomTab} />
+    <Stack.Navigator
+      screenOptions={{headerBackTitle: 'Back', headerTintColor: COLORS.BLACK}}>
+      <Stack.Screen
+        options={{headerShown: false}}
+        name={ROUTES.TAB}
+        component={BottomTab}
+      />
+      <Stack.Screen
+        name={PRODUCTSNAVIGATOR.PRODUCTLIST}
+        component={ProductsList}
+      />
+      <Stack.Screen
+        name={PRODUCTSNAVIGATOR.PRODUCTDETAIL}
+        component={ProductDetail}
+      />
     </Stack.Navigator>
   );
 };

@@ -5,7 +5,7 @@ import {widgetHeaderProps} from '../../models/ui/widgetProps';
 const WidgetsHeader: React.FC<widgetHeaderProps> = ({title}) => {
   return (
     <View style={styles.container}>
-      <Text>{title}</Text>
+      <Text style={styles.text}>{title}</Text>
     </View>
   );
 };
@@ -13,6 +13,10 @@ const WidgetsHeader: React.FC<widgetHeaderProps> = ({title}) => {
 const styles = StyleSheet.create({
   container: {
     marginVertical: 10,
+  },
+  text: {
+    fontSize: 18,
+    fontWeight: 'bold',
   },
 });
 
