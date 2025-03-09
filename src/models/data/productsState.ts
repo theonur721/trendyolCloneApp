@@ -17,5 +17,9 @@ interface ProductsState {
   products: Product[];
   bestSellerProducts: Product[];
   popularProducts: Product[];
+  product: Product;
 }
-export type {ProductsState, Product};
+interface Params {
+  id: number;
+}
+export type {ProductsState, Product, Params};
