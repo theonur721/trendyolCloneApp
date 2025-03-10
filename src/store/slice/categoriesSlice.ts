@@ -4,6 +4,7 @@ import {CategoriesState} from '../../models/data/categoriesState';
 
 const initialState: CategoriesState = {
   categories: [],
+  selectedCategory: 'All',
   pending: false,
   error: null,
 };
@@ -11,7 +12,11 @@ const initialState: CategoriesState = {
 export const categoriesSlice = createSlice({
   name: 'categories',
   initialState,
-  reducers: {},
+  reducers: {
+    setCategory: (state, action) => {
+      state.selectedCategory = action.payload;
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(getAllCategories.pending, state => {
@@ -27,5 +32,7 @@ export const categoriesSlice = createSlice({
       });
   },
 });
+
+export const {setCategory} = categoriesSlice.actions;
 
 export default categoriesSlice.reducer;

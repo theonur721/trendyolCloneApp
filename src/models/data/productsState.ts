@@ -22,4 +22,4 @@ interface ProductsState {
 interface Params {
   id: number;
 }
-export type {ProductsState, Product, Params};
+export type {ProductsState, Product, Params, Rating};

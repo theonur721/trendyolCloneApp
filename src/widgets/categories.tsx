@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {FlatList, Text, StyleSheet} from 'react-native';
+import {FlatList, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import type {RootState} from '../store/index';
 import {getAllCategories} from '../store/actions/categoriesActions';
@@ -14,12 +14,14 @@ const Categories: React.FC<Props> = ({navigation, route}) => {
     dispatch(getAllCategories({}));
   }, []);
   return (
-    <FlatList
-      showsHorizontalScrollIndicator={false}
-      horizontal
-      data={categories}
-      renderItem={({item}) => <CategoryItem category={item} />}
-    />
+    <View>
+      <FlatList
+        showsHorizontalScrollIndicator={false}
+        horizontal
+        data={categories}
+        renderItem={({item}) => <CategoryItem category={item} />}
+      />
+    </View>
   );
 };
 
