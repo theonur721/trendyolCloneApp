@@ -8,6 +8,7 @@ import {height, width} from '../utils/constant';
 import {COLORS} from '../theme/colors';
 import Button from '../components/ui/button';
 import Rate from '../components/products/rate';
+import FavoritesButton from '../components/favorites/favoritesButton';
 
 type Props = RouteType<'ProductDetail'>;
 
@@ -19,22 +20,25 @@ const ProductDetail: React.FC<Props> = ({route}) => {
 
   useEffect(() => {
     dispatch(getProductDetail({id: productId}));
-  }, []);
+  }, [productId]);
+
   return (
     <View style={defaultScreenStyle.container}>
       <View>
         <ScrollView showsVerticalScrollIndicator={false}>
+          <FavoritesButton product={product} />
           <Image source={{uri: product.image}} style={styles.image} />
-          <Text style={styles.category}>{product?.category} </Text>
-          <Text style={styles.title}>{product?.title} </Text>
-          {product.rating && <Rate rating={product?.rating} />}
-
+          <Text style={styles.category}>{product?.category}</Text>
+          <Text style={styles.title}>{product?.title}</Text>
+          {product.rating && (
+            <Rate size="large" rating={product.rating} showCount={true} />
+          )}
           <Text style={styles.description}>{product?.description}</Text>
         </ScrollView>
       </View>
       <View style={styles.priceContainer}>
         <View style={{flex: 1, alignItems: 'center'}}>
-          <Text style={styles.price}>{product?.price} TL </Text>
+          <Text style={styles.price}>{product?.price} TL</Text>
           <Text style={styles.free}>Free shipping</Text>
         </View>
         <View style={{flex: 2, justifyContent: 'center'}}>

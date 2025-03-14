@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {View, Text, FlatList, ActivityIndicator} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 import {defaultScreenStyle} from '../styles/defaultScreenStyle';
@@ -6,12 +6,11 @@ import {RootState, AppDispatch} from '../store';
 import ProductItem from '../components/products/productItem';
 import {getAllProducts} from '../store/actions/productsActions';
 import Categories from '../widgets/categories';
-
-type Props = RouteType<'ProductList'>;
+import {COLORS} from '../theme/colors';
 
 const ProductsList: React.FC<Props> = ({navigation, route}) => {
   const dispatch = useDispatch<AppDispatch>();
-  const {products, loading, error} = useSelector(
+  const {products, pending, error} = useSelector(
     (state: RootState) => state.products,
   );
   const {selectedCategory} = useSelector(
@@ -26,24 +25,6 @@ const ProductsList: React.FC<Props> = ({navigation, route}) => {
       .catch(error => {});
   }, [selectedCategory, dispatch]);
 
-  if (loading) {
-    return (
-      <View style={defaultScreenStyle.container}>
-        <ActivityIndicator size="large" color="#0000ff" />
-      </View>
-    );
-  }
-
-  if (error) {
-    return (
-      <View style={defaultScreenStyle.container}>
-        <Text style={{textAlign: 'center', fontSize: 18, marginTop: 20}}>
-          Error: {error}
-        </Text>
-      </View>
-    );
-  }
-
   return (
     <View style={defaultScreenStyle.container}>
       {products.length === 0 ? (
@@ -53,21 +34,28 @@ const ProductsList: React.FC<Props> = ({navigation, route}) => {
       ) : (
         <>
           <Categories />
-          <FlatList
-            showsVerticalScrollIndicator={false}
-            contentContainerStyle={{alignItems: 'center'}}
-            numColumns={2}
-            data={products || []}
-            keyExtractor={(item, index) =>
-              item?.id ? `product-${item.id}` : `index-${index}`
-            }
-            renderItem={({item}) => <ProductItem product={item} />}
-            ListEmptyComponent={
-              <Text style={{textAlign: 'center', fontSize: 18, marginTop: 20}}>
-                No Products Found
-              </Text>
-            }
-          />
+          {pending ? (
+            <View style={{flex: 1, justifyContent: 'center'}}>
+              <ActivityIndicator size={'large'} color={COLORS.ORANGE} />
+            </View>
+          ) : (
+            <FlatList
+              showsVerticalScrollIndicator={false}
+              contentContainerStyle={{alignItems: 'center'}}
+              numColumns={2}
+              data={products || []}
+              keyExtractor={(item, index) =>
+                item?.id ? `product-${item.id}` : `index-${index}`
+              }
+              renderItem={({item}) => <ProductItem product={item} />}
+              ListEmptyComponent={
+                <Text
+                  style={{textAlign: 'center', fontSize: 18, marginTop: 20}}>
+                  No Products Found
+                </Text>
+              }
+            />
+          )}
         </>
       )}
     </View>

@@ -8,8 +8,8 @@ import CartScreen from '../screens/Cart';
 import ProfileScreen from '../screens/ProfileScreen';
 import {PRODUCTSNAVIGATOR, ROUTES} from '../utils/routes';
 import {COLORS} from '../theme/colors';
-import Icon from 'react-native-vector-icons/Ionicons'; // İkonları import ediyoruz
-import HeaderRight from './HeaderRight'; // HeaderRight bileşenini import ettik
+import Icon from 'react-native-vector-icons/Ionicons';
+import HeaderRight from './HeaderRight';
 import ProductsList from '../screens/Products';
 import ProductDetail from '../screens/ProductDetail';
 

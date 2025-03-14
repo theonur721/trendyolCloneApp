@@ -1,6 +1,7 @@
 interface Rating {
   count: number;
   rate: number;
+  size: 'small' | 'medium' | 'large';
 }
 
 interface Product {
@@ -11,6 +12,7 @@ interface Product {
   description: string;
   image: string;
   rating: Rating;
+  isFavorited: boolean;
 }
 
 interface ProductsState {
@@ -18,6 +20,8 @@ interface ProductsState {
   bestSellerProducts: Product[];
   popularProducts: Product[];
   product: Product;
+  pending: boolean;
+  error: any;
 }
 interface Params {
   id: number;
