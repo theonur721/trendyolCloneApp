@@ -18,7 +18,6 @@ const ProductsList: React.FC<Props> = ({navigation, route}) => {
   );
 
   useEffect(() => {
-    console.log('Selected Category:', selectedCategory);
     dispatch(getAllProducts({category: selectedCategory}))
       .unwrap()
       .then(data => {})

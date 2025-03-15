@@ -9,6 +9,7 @@ import {COLORS} from '../theme/colors';
 import Button from '../components/ui/button';
 import Rate from '../components/products/rate';
 import FavoritesButton from '../components/favorites/favoritesButton';
+import {addCart} from '../store/slice/cartSlice';
 
 type Props = RouteType<'ProductDetail'>;
 
@@ -23,26 +24,24 @@ const ProductDetail: React.FC<Props> = ({route}) => {
   }, [productId]);
 
   return (
-    <View style={defaultScreenStyle.container}>
-      <View>
-        <ScrollView showsVerticalScrollIndicator={false}>
-          <FavoritesButton product={product} />
-          <Image source={{uri: product.image}} style={styles.image} />
-          <Text style={styles.category}>{product?.category}</Text>
-          <Text style={styles.title}>{product?.title}</Text>
-          {product.rating && (
-            <Rate size="large" rating={product.rating} showCount={true} />
-          )}
-          <Text style={styles.description}>{product?.description}</Text>
-        </ScrollView>
-      </View>
+    <View style={[defaultScreenStyle.container, {flex: 1}]}>
+      <ScrollView contentContainerStyle={{paddingBottom: height * 0.12}}>
+        <FavoritesButton product={product} />
+        <Image source={{uri: product.image}} style={styles.image} />
+        <Text style={styles.category}>{product?.category}</Text>
+        <Text style={styles.title}>{product?.title}</Text>
+        {product.rating && (
+          <Rate size="large" rating={product.rating} showCount={true} />
+        )}
+        <Text style={styles.description}>{product?.description}</Text>
+      </ScrollView>
       <View style={styles.priceContainer}>
         <View style={{flex: 1, alignItems: 'center'}}>
           <Text style={styles.price}>{product?.price} TL</Text>
           <Text style={styles.free}>Free shipping</Text>
         </View>
         <View style={{flex: 2, justifyContent: 'center'}}>
-          <Button />
+          <Button onPress={() => dispatch(addCart(product))} />
         </View>
       </View>
     </View>
@@ -66,13 +65,20 @@ const styles = StyleSheet.create({
     textDecorationLine: 'underline',
   },
   priceContainer: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    width: '100%',
+    backgroundColor: COLORS.WHITE,
     justifyContent: 'center',
     alignItems: 'center',
     height: height * 0.1,
     borderTopWidth: 0.5,
     borderColor: COLORS.GRAY,
     flexDirection: 'row',
+    paddingHorizontal: 10,
   },
+
   image: {
     width: width,
     height: height * 0.3,

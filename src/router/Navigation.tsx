@@ -76,6 +76,7 @@ const BottomTab: React.FC<Props> = ({navigation, route}) => {
             /> // Focus durumuna göre ikon değişiyor
           ),
           headerRight: () => <HeaderRight />, // HeaderRight bileşenini ekledik
+          tabBarBadge: 0,
         }}
       />
       <Tab.Screen

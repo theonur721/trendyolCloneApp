@@ -13,6 +13,7 @@ interface Product {
   image: string;
   rating: Rating;
   isFavorited: boolean;
+  quantity: 0;
 }
 
 interface ProductsState {

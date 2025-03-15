@@ -1,13 +1,22 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, FlatList, SafeAreaView} from 'react-native';
+import {useSelector} from 'react-redux';
+import {RootState} from '../store';
+import CartItem from '../components/cart/cartItem';
+import {defaultScreenStyle} from '../styles/defaultScreenStyle';
 
-type Props = RouteType<'Cart'>;
-
-const CartScreen: React.FC<Props> = ({navigation, route}) => {
+const CartScreen: React.FC = () => {
+  const {cart} = useSelector((state: RootState) => state.cart);
+  console.log('sepetteki ürünler', cart);
   return (
-    <View>
-      <Text>CartScreen</Text>
-    </View>
+    <SafeAreaView style={defaultScreenStyle.safeAreaContainer}>
+      <View style={defaultScreenStyle.container}>
+        <FlatList
+          data={cart}
+          renderItem={({item}) => <CartItem product={item} />}
+        />
+      </View>
+    </SafeAreaView>
   );
 };
 
