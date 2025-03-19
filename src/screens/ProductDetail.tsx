@@ -41,7 +41,10 @@ const ProductDetail: React.FC<Props> = ({route}) => {
           <Text style={styles.free}>Free shipping</Text>
         </View>
         <View style={{flex: 2, justifyContent: 'center'}}>
-          <Button onPress={() => dispatch(addCart(product))} />
+          <Button
+            title="Add to Cart"
+            onPress={() => dispatch(addCart(product))}
+          />
         </View>
       </View>
     </View>

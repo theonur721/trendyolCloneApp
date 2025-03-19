@@ -1,5 +1,12 @@
 import React from 'react';
-import {View, Text, Pressable, Image, StyleSheet} from 'react-native';
+import {
+  View,
+  Text,
+  Pressable,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+} from 'react-native';
 import {CartItemProps} from '../../models/ui/cartItemProps';
 import {height, width} from '../../utils/constant';
 import {COLORS} from '../../theme/colors';
@@ -8,8 +15,13 @@ import Discount from '../badges/discount';
 import Delivery from '../badges/delivery';
 import {useNavigation} from '@react-navigation/native';
 import {PRODUCTSNAVIGATOR} from '../../utils/routes';
+import Counter from './counter';
+import {useDispatch} from 'react-redux';
+import Icon from 'react-native-vector-icons/Ionicons';
+import {removeFromCart} from '../../store/slice/cartSlice';
 
 const CartItem: React.FC<CartItemProps> = ({product}) => {
+  const dispatch = useDispatch();
   const navigation = useNavigation();
   return (
     <Pressable
@@ -37,9 +49,24 @@ const CartItem: React.FC<CartItemProps> = ({product}) => {
           <Discount />
           <Delivery />
         </View>
-        <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-          <View>
-            <Text style={styles.price}>{product.quantity}</Text>
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+          }}>
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <Counter product={product} quantity={product.quantity} />
+            <TouchableOpacity
+              onPress={() => dispatch(removeFromCart(product.id))}
+              style={{marginHorizontal: 10}}>
+              <Icon name="trash" size={24} color={COLORS.RED} />
+            </TouchableOpacity>
           </View>
           <View>
             <Text style={styles.price}>{product?.price} TL</Text>
@@ -69,7 +96,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   price: {
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: 'bold',
     color: COLORS.ORANGE,
     marginHorizontal: 10,

@@ -12,10 +12,13 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import HeaderRight from './HeaderRight';
 import ProductsList from '../screens/Products';
 import ProductDetail from '../screens/ProductDetail';
+import {useSelector} from 'react-redux';
+import {RootState} from '../store';
 
 const Tab = createBottomTabNavigator();
 
 const BottomTab: React.FC<Props> = ({navigation, route}) => {
+  const {cart} = useSelector((state: RootState) => state.cart);
   return (
     <Tab.Navigator
       screenOptions={{
@@ -76,7 +79,7 @@ const BottomTab: React.FC<Props> = ({navigation, route}) => {
             /> // Focus durumuna göre ikon değişiyor
           ),
           headerRight: () => <HeaderRight />, // HeaderRight bileşenini ekledik
-          tabBarBadge: 0,
+          tabBarBadge: cart?.length,
         }}
       />
       <Tab.Screen

@@ -2,11 +2,13 @@ import React from 'react';
 import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import {COLORS} from '../../theme/colors';
 import {height} from '../../utils/constant';
+import {ButtonProps} from '../../models/ui/buttonProps';
 
-const Button: React.FC<Props> = props => {
+const Button: React.FC<ButtonProps> = props => {
+  const {title} = props;
   return (
     <TouchableOpacity {...props} style={styles.container}>
-      <Text style={styles.title}>Add to Cart</Text>
+      <Text style={styles.title}>{title}</Text>
     </TouchableOpacity>
   );
 };
