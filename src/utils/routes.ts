@@ -11,3 +11,8 @@ export const PRODUCTSNAVIGATOR = {
   PRODUCTLIST: 'ProductsList',
   PRODUCTDETAIL: 'ProductDetail',
 };
+
+export const AUTHNAVIGATOR = {
+  LOGIN: 'Login',
+  REGISTER: 'Register',
+};

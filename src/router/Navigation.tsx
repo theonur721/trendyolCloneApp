@@ -6,7 +6,7 @@ import SearchScreen from '../screens/SearchScreen';
 import FavoritesScreen from '../screens/FavoritesScreen';
 import CartScreen from '../screens/Cart';
 import ProfileScreen from '../screens/ProfileScreen';
-import {PRODUCTSNAVIGATOR, ROUTES} from '../utils/routes';
+import {AUTHNAVIGATOR, PRODUCTSNAVIGATOR, ROUTES} from '../utils/routes';
 import {COLORS} from '../theme/colors';
 import Icon from 'react-native-vector-icons/Ionicons';
 import HeaderRight from './HeaderRight';
@@ -14,6 +14,7 @@ import ProductsList from '../screens/Products';
 import ProductDetail from '../screens/ProductDetail';
 import {useSelector} from 'react-redux';
 import {RootState} from '../store';
+import Login from '../screens/Login';
 
 const Tab = createBottomTabNavigator();
 
@@ -119,6 +120,7 @@ const Navigation: React.FC<Props> = ({navigation, route}) => {
         name={PRODUCTSNAVIGATOR.PRODUCTDETAIL}
         component={ProductDetail}
       />
+      <Stack.Screen name={AUTHNAVIGATOR.LOGIN} component={Login} />
     </Stack.Navigator>
   );
 };

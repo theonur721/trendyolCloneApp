@@ -1,12 +1,33 @@
-import {StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {StyleSheet, TouchableOpacity, Alert} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {COLORS} from '../../theme/colors';
 import {width} from '../../utils/constant';
 import {ProductItemProps} from '../../models/ui/productItemProps';
+import {useSelector} from 'react-redux';
+import {RootState} from '../../store';
+import {AUTHNAVIGATOR} from '../../utils/routes';
+import {useNavigation} from '@react-navigation/native';
 
 const FavoritesButton: React.FC<ProductItemProps> = ({product}) => {
+  const navigation = useNavigation();
+  const {isLogin} = useSelector((state: RootState) => state.auth);
+  const chechLogin = () => {
+    if (!isLogin) {
+      Alert.alert('Login', 'Please log in before adding to favorites', [
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        {
+          text: 'login',
+          onPress: () => navigation.navigate(AUTHNAVIGATOR.LOGIN),
+        },
+      ]);
+    }
+  };
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity onPress={chechLogin} style={styles.container}>
       <Icon
         name={product.isFavorited ? 'heart' : 'heart-outline'}
         size={20}

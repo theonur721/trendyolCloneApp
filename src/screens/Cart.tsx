@@ -1,5 +1,12 @@
 import React from 'react';
-import {View, Text, FlatList, SafeAreaView, StyleSheet} from 'react-native';
+import {
+  View,
+  Text,
+  FlatList,
+  SafeAreaView,
+  StyleSheet,
+  Alert,
+} from 'react-native';
 import {useSelector} from 'react-redux';
 import {RootState} from '../store';
 import CartItem from '../components/cart/cartItem';
@@ -8,9 +15,29 @@ import Button from '../components/ui/button';
 import {COLORS} from '../theme/colors';
 import {height} from '../utils/constant';
 import {addCart} from '../store/slice/cartSlice';
+import {useNavigation} from '@react-navigation/native';
+import {AUTHNAVIGATOR} from '../utils/routes';
 
 const CartScreen: React.FC = () => {
+  const navigation = useNavigation();
   const {cart, totalPrice} = useSelector((state: RootState) => state.cart);
+
+  const {isLogin} = useSelector((state: RootState) => state.auth);
+  const chechLogin = () => {
+    if (!isLogin) {
+      Alert.alert('Login', 'Please log in before confirming the cart', [
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        {
+          text: 'login',
+          onPress: () => navigation.navigate(AUTHNAVIGATOR.LOGIN),
+        },
+      ]);
+    }
+  };
 
   return (
     <SafeAreaView style={defaultScreenStyle.safeAreaContainer}>
@@ -33,10 +60,7 @@ const CartScreen: React.FC = () => {
             <Text style={styles.free}>Free shipping</Text>
           </View>
           <View style={{flex: 1}}>
-            <Button
-              title="Confirm Cart"
-              onPress={() => useDispatch(addCart(product))}
-            />
+            <Button title="Confirm Cart" onPress={() => chechLogin()} />
           </View>
         </View>
       )}
