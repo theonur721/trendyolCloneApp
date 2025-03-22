@@ -1,12 +1,13 @@
 import React from 'react';
 import {View, Text} from 'react-native';
+import {useSelector} from 'react-redux';
+import {RootState} from '../store';
 
-type Props = RouteType<'Profile'>;
-
-const ProfileScreen: React.FC<Props> = ({navigation, route}) => {
+const ProfileScreen: React.FC = () => {
+  const {token} = useSelector((state: RootState) => state.auth);
   return (
     <View>
-      <Text>ProfileScreen</Text>
+      <Text>{token}</Text>
     </View>
   );
 };

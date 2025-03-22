@@ -5,9 +5,15 @@ import {height} from '../../utils/constant';
 import {ButtonProps} from '../../models/ui/buttonProps';
 
 const Button: React.FC<ButtonProps> = props => {
-  const {title} = props;
+  const {title, disabled, onPress} = props;
   return (
-    <TouchableOpacity {...props} style={styles.container}>
+    <TouchableOpacity
+      onPressIn={onPress}
+      {...props}
+      style={[
+        styles.container,
+        {backgroundColor: disabled ? COLORS.GRAY : COLORS.ORANGE},
+      ]}>
       <Text style={styles.title}>{title}</Text>
     </TouchableOpacity>
   );

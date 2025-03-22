@@ -8,7 +8,7 @@ const userLogin = createAsyncThunk('auth/userLogin', async (params: object) => {
     console.log('veri', response.data);
     return response.data;
   } catch (error) {
-    console.log('error', error.response.message);
+    return error;
   }
 });
 

@@ -3,13 +3,16 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import {COLORS} from '../../theme/colors';
 import {width} from '../../utils/constant';
 import {ProductItemProps} from '../../models/ui/productItemProps';
-import {useSelector} from 'react-redux';
-import {RootState} from '../../store';
+import {useDispatch, useSelector} from 'react-redux';
+import {AppDispatch, RootState} from '../../store';
 import {AUTHNAVIGATOR} from '../../utils/routes';
 import {useNavigation} from '@react-navigation/native';
+import {addFavorite} from '../../store/slice/favoriteSlice';
+import {addFavoriteOther} from '../../store/slice/productSlice';
 
 const FavoritesButton: React.FC<ProductItemProps> = ({product}) => {
   const navigation = useNavigation();
+  const dispatch = useDispatch<AppDispatch>();
   const {isLogin} = useSelector((state: RootState) => state.auth);
   const chechLogin = () => {
     if (!isLogin) {
@@ -24,12 +27,15 @@ const FavoritesButton: React.FC<ProductItemProps> = ({product}) => {
           onPress: () => navigation.navigate(AUTHNAVIGATOR.LOGIN),
         },
       ]);
+    } else {
+      dispatch(addFavorite(product));
+      dispatch(addFavoriteOther(product));
     }
   };
   return (
     <TouchableOpacity onPress={chechLogin} style={styles.container}>
       <Icon
-        name={product.isFavorited ? 'heart' : 'heart-outline'}
+        name={product.isFavorite ? 'heart' : 'heart-outline'}
         size={20}
         color={COLORS.ORANGE}
       />

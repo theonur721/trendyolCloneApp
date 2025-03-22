@@ -12,7 +12,7 @@ interface Product {
   description: string;
   image: string;
   rating: Rating;
-  isFavorited: boolean;
+  isFavorite: boolean;
   quantity: 0;
 }
 

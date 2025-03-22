@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {ScrollView, StyleSheet} from 'react-native';
 import {View, Text, SafeAreaView} from 'react-native';
 import Input from '../components/ui/input';
@@ -7,16 +7,25 @@ import {defaultScreenStyle} from '../styles/defaultScreenStyle';
 import {COLORS} from '../theme/colors';
 import {Formik} from 'formik';
 import {LoginForm} from '../models/ui/loginForm';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {userLogin} from '../store/actions/authActions';
-import {AppDispatch} from '../store';
+import {AppDispatch, RootState} from '../store';
+import {useNavigation} from '@react-navigation/native';
 
 const Login: React.FC = () => {
+  const navigation = useNavigation();
   const dispatch = useDispatch<AppDispatch>();
+  const {isLogin, pending} = useSelector((state: RootState) => state.auth);
   const initialValues: LoginForm = {
     username: 'mor_2314',
     password: '83r5^_',
   };
+
+  useEffect(() => {
+    if (isLogin) {
+      navigation.goBack();
+    }
+  }, [isLogin]);
 
   return (
     <SafeAreaView style={defaultScreenStyle.safeAreaContainer}>
@@ -40,7 +49,7 @@ const Login: React.FC = () => {
                 title="Password"
               />
               <Text style={styles.forgotPass}>Forgot my password?</Text>
-              <Button onPress={handleSubmit} title="Login" />
+              <Button disabled={pending} onPress={handleSubmit} title="Login" />
             </View>
           )}
         </Formik>
