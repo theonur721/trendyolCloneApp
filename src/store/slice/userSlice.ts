@@ -1,25 +1,18 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {AuthState} from '../../models/data/authState';
 import {userLogin} from '../actions/authActions';
+import {UserState} from '../../models/data/userState';
 
-const initialState: AuthState = {
-  isLogin: false,
+const initialState: UserState = {
   user: null,
   pending: false,
   error: null,
-  token: null,
 };
 
-export const authSlice = createSlice({
-  name: 'auth',
+export const userSlice = createSlice({
+  name: 'user',
   initialState,
-  reducers: {
-    checkUser: (state, action) => {
-      if (action?.payload) {
-        state.isLogin = true;
-      }
-    },
-  },
+  reducers: {},
   extraReducers: builder => {
     builder
       .addCase(userLogin.pending, state => {
@@ -38,7 +31,4 @@ export const authSlice = createSlice({
   },
 });
 
-// export const {setCategory} = authSlice.actions;
-export const {checkUser} = authSlice.actions;
-
-export default authSlice.reducer;
+export default userSlice.reducer;

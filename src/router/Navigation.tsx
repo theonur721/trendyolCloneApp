@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import HomeScreen from '../screens/HomeScreen';
@@ -12,13 +12,15 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import HeaderRight from './HeaderRight';
 import ProductsList from '../screens/Products';
 import ProductDetail from '../screens/ProductDetail';
-import {useSelector} from 'react-redux';
-import {RootState} from '../store';
+import {useDispatch, useSelector} from 'react-redux';
+import {AppDispatch, RootState} from '../store';
 import Login from '../screens/Login';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {checkUser} from '../store/slice/authSlice';
 
 const Tab = createBottomTabNavigator();
 
-const BottomTab: React.FC<Props> = ({navigation, route}) => {
+const BottomTab: React.FC = () => {
   const {cart} = useSelector((state: RootState) => state.cart);
   return (
     <Tab.Navigator
@@ -103,7 +105,19 @@ const BottomTab: React.FC<Props> = ({navigation, route}) => {
 
 const Stack = createNativeStackNavigator();
 
-const Navigation: React.FC<Props> = ({navigation, route}) => {
+const Navigation: React.FC = () => {
+  const dispatch = useDispatch<AppDispatch>();
+
+  const getState = async () => {
+    const token = await AsyncStorage.getItem('token');
+    if (token) {
+      dispatch(checkUser(token));
+    }
+  };
+
+  useEffect(() => {
+    getState();
+  }, []);
   return (
     <Stack.Navigator
       screenOptions={{headerBackTitle: 'Back', headerTintColor: COLORS.BLACK}}>
