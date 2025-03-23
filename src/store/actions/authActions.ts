@@ -16,4 +16,13 @@ const userLogin = createAsyncThunk('auth/userLogin', async (params: object) => {
   }
 });
 
-export {userLogin};
+const userLogOut = createAsyncThunk('auth/userLogOut', async () => {
+  try {
+    await AsyncStorage.removeItem('token');
+    return null;
+  } catch (error) {
+    return error;
+  }
+});
+
+export {userLogin, userLogOut};

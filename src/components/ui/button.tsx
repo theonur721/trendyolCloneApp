@@ -21,6 +21,7 @@ const Button: React.FC<ButtonProps> = props => {
 
 const styles = StyleSheet.create({
   container: {
+    margin: 5,
     backgroundColor: COLORS.ORANGE,
     justifyContent: 'center',
     alignItems: 'center',

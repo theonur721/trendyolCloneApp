@@ -1,7 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {AuthState} from '../../models/data/authState';
-import {userLogin} from '../actions/authActions';
 import {UserState} from '../../models/data/userState';
+import {getUserInfo} from '../actions/userActions';
 
 const initialState: UserState = {
   user: null,
@@ -15,18 +14,16 @@ export const userSlice = createSlice({
   reducers: {},
   extraReducers: builder => {
     builder
-      .addCase(userLogin.pending, state => {
+      .addCase(getUserInfo.pending, state => {
         state.pending = true;
       })
-      .addCase(userLogin.fulfilled, (state, action) => {
-        state.isLogin = true;
+      .addCase(getUserInfo.fulfilled, (state, action) => {
         state.pending = false;
-        state.token = action.payload.token;
+        state.user = action.payload;
       })
-      .addCase(userLogin.rejected, (state, action) => {
+      .addCase(getUserInfo.rejected, (state, action) => {
         state.pending = false;
         state.error = action.error;
-        state.isLogin = false;
       });
   },
 });
