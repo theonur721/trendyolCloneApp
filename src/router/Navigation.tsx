@@ -6,7 +6,12 @@ import SearchScreen from '../screens/SearchScreen';
 import FavoritesScreen from '../screens/FavoritesScreen';
 import CartScreen from '../screens/Cart';
 import ProfileScreen from '../screens/ProfileScreen';
-import {AUTHNAVIGATOR, PRODUCTSNAVIGATOR, ROUTES} from '../utils/routes';
+import {
+  AUTHNAVIGATOR,
+  NOTIFICATIONNAVIGATOR,
+  PRODUCTSNAVIGATOR,
+  ROUTES,
+} from '../utils/routes';
 import {COLORS} from '../theme/colors';
 import Icon from 'react-native-vector-icons/Ionicons';
 import HeaderRight from './HeaderRight';
@@ -17,6 +22,7 @@ import {AppDispatch, RootState} from '../store';
 import Login from '../screens/Login';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {checkUser} from '../store/slice/authSlice';
+import Notifications from '../screens/Notifications';
 
 const Tab = createBottomTabNavigator();
 
@@ -135,6 +141,10 @@ const Navigation: React.FC = () => {
         component={ProductDetail}
       />
       <Stack.Screen name={AUTHNAVIGATOR.LOGIN} component={Login} />
+      <Stack.Screen
+        name={NOTIFICATIONNAVIGATOR.NOTIFICATIONS}
+        component={Notifications}
+      />
     </Stack.Navigator>
   );
 };

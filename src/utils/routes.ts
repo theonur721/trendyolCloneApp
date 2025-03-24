@@ -16,3 +16,7 @@ export const AUTHNAVIGATOR = {
   LOGIN: 'Login',
   REGISTER: 'Register',
 };
+
+export const NOTIFICATIONNAVIGATOR = {
+  NOTIFICATIONS: 'Notifications',
+};
