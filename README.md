@@ -53,7 +53,9 @@ Follow these steps to run the project:
 
 ## Screenshots
 
-(Screenshots can be added here)
+## Screen Gif
+
+![](ekran.gif)
 
 ---
 
