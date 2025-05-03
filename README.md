@@ -51,8 +51,6 @@ Follow these steps to run the project:
      npx react-native run-ios
      ```
 
-## Screenshots
-
 ## Screen Gif
 
 ![](ekran.gif)
@@ -80,24 +78,3 @@ Bu proje, React Native ve TypeScript kullanılarak geliştirilmiş bir **Trendyo
 - **Sepet Yönetimi**
 - **Kategori Filtreleme**
 - **Kolay Navigasyon**
-
-## Kurulum
-
-1. **Projeyi Klonlayın:**
-
-   ```sh
-   git clone https://github.com/kullaniciAdi/trendyolCloneApp.git
-   cd trendyolCloneApp
-   ```
-
-2. **Bağımlılıkları Yükleyin:**
-
-   ```sh
-   npm install
-   ```
-
-3. **Uygulamayı Çalıştırın:**
-
-   ```sh
-   npx react-native run-android
-   ```
