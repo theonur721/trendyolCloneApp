@@ -21,36 +21,6 @@ This project is a **Trendyol Clone** application developed using React Native an
 - **User-Friendly UI:** Provides a modern and intuitive design.
 - **Navigation Support:** Users can easily navigate through tabs and screens.
 
-## Installation & Running
-
-Follow these steps to run the project:
-
-1. **Clone the Repository:**
-
-   ```sh
-   git clone https://github.com/kullaniciAdi/trendyolCloneApp.git
-   cd trendyolCloneApp
-   ```
-
-2. **Install Dependencies:**
-
-   ```sh
-   npm install
-   # or
-   yarn install
-   ```
-
-3. **Run the App:**
-
-   - **For Android:**
-     ```sh
-     npx react-native run-android
-     ```
-   - **For iOS:** (Requires macOS and Xcode)
-     ```sh
-     npx react-native run-ios
-     ```
-
 ## Screen Gif
 
 ![](ekran.gif)
