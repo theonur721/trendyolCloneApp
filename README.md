@@ -29,6 +29,8 @@ This project is a **Trendyol Clone** application developed using React Native an
 
 # Trendyol Clone Uygulaması
 
+- (turkish-version)
+
 Bu proje, React Native ve TypeScript kullanılarak geliştirilmiş bir **Trendyol Clone** uygulamasıdır.
 
 ## Kullanılan Kütüphaneler
